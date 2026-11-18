@@ -49,7 +49,7 @@
       overflow: hidden;
       background:
         linear-gradient(90deg, rgba(8, 52, 84, .92) 0%, rgba(8, 52, 84, .75) 40%, rgba(8, 52, 84, .15) 70%, rgba(8, 52, 84, 0) 100%),
-        url('./images/hero-bg.jpg') right center/cover no-repeat,
+        url('./images/FuturisticMedicalHologramBanner.png') right center/cover no-repeat,
         linear-gradient(135deg, #0a3a5a, #0e6f8f);
     }
 
@@ -579,7 +579,7 @@
       .hero {
         background:
           linear-gradient(180deg, rgba(8, 52, 84, .88) 0%, rgba(8, 52, 84, .8) 60%, rgba(8, 52, 84, .6) 100%),
-          url('./images/hero-bg.jpg') 70% center/cover no-repeat,
+          url('./images/FuturisticMedicalHologramBanner.png') 70% center/cover no-repeat,
           linear-gradient(135deg, #0a3a5a, #0e6f8f);
       }
 
@@ -2669,6 +2669,110 @@
       }
     }
 
+    /* ---- 12. image hover animation: zoom + tint/frame + shine sweep ---- */
+    .about-main,
+    .faq-visual,
+    .video-card .vthumb {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .about-main img,
+    .faq-visual img,
+    .video-card .vthumb img {
+      transition: transform 1s var(--ease), filter .6s ease;
+    }
+
+    /* tint + inner white frame (the huge spread shadow is clipped by overflow:hidden) */
+    .about-main::before,
+    .faq-visual::before,
+    .video-card .vthumb::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      z-index: 2;
+      border: 2px solid rgba(255, 255, 255, .8);
+      border-radius: 4px;
+      box-shadow: 0 0 0 999px rgba(8, 52, 84, .28);
+      opacity: 0;
+      transform: scale(.92);
+      transition: opacity .5s ease, transform .7s var(--ease);
+      pointer-events: none;
+    }
+
+    .video-card .vthumb::before {
+      inset: 10px;
+    }
+
+    /* diagonal shine streak */
+    .about-main::after,
+    .faq-visual::after,
+    .video-card .vthumb::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -80%;
+      z-index: 2;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, .42) 50%, transparent 100%);
+      transform: skewX(-20deg);
+      pointer-events: none;
+    }
+
+    .about .play-btn {
+      z-index: 3;
+    }
+
+    @media (hover: hover) {
+
+      .about-main:hover img,
+      .faq-visual:hover img,
+      .video-card .vthumb:hover img {
+        transform: scale(1.09) rotate(.6deg);
+        filter: saturate(1.15) brightness(1.04);
+      }
+
+      .about-main:hover::before,
+      .faq-visual:hover::before,
+      .video-card .vthumb:hover::before {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .about-main:hover::after,
+      .faq-visual:hover::after,
+      .video-card .vthumb:hover::after {
+        left: 140%;
+        transition: left 1.1s var(--ease);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .about-main img,
+      .faq-visual img,
+      .video-card .vthumb img,
+      .about-main::before,
+      .faq-visual::before,
+      .video-card .vthumb::before {
+        transition: none
+      }
+
+      .about-main:hover img,
+      .faq-visual:hover img,
+      .video-card .vthumb:hover img {
+        transform: none;
+        filter: none
+      }
+
+      .about-main::after,
+      .faq-visual::after,
+      .video-card .vthumb::after {
+        display: none
+      }
+    }
+
     /* ---- reduced motion: show everything, stop looping animations ---- */
     @media (prefers-reduced-motion: reduce) {
       html {
@@ -2830,14 +2934,14 @@
             <span class="about-dot"></span>
 
             <div class="about-main" data-anim="left">
-              <img src="./images/about-us-image.jpg" alt="Scientist examining a sample under a microscope"
+              <img src="./images/Microscope.png" alt="Scientist examining a sample under a microscope"
                 data-parallax="0.05">
             </div>
 
             <div class="video-card" data-anim="up" data-delay="300">
               <span class="vlabel">24/7 Emergency Support</span>
               <div class="vthumb">
-                <img src="./images/about-us-video-image.jpg" alt="Laboratory scientist">
+                <img src="./images/Focused Scientist at the Microscope.png" alt="Laboratory scientist">
                 <button type="button" class="play-btn" data-cursor="Play" data-bs-toggle="modal"
                   data-bs-target="#videoModal" aria-label="Play video"><i class="bi bi-play-fill"></i></button>
               </div>
@@ -2986,7 +3090,7 @@
 
         <div class="col-lg-6">
           <div class="faq-visual" data-anim="left">
-            <img src="./images/faq-image.jpg" alt="Scientist working with a microscope in a laboratory"
+            <img src="./images/MicroscopeLab.png" alt="Scientist working with a microscope in a laboratory"
               data-parallax="0.04">
           </div>
         </div>
@@ -3138,6 +3242,10 @@
       </ol>
     </div>
   </section>
+
+<section>
+  here partner design
+</section>
 
   <!-- FOOTER -->
   <footer class="ft" id="contact">
