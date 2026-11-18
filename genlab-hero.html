@@ -1872,29 +1872,41 @@
     }
 
     .ft-social a:focus-visible,
-    .ft-links a:focus-visible,
-    .ft-contact a:focus-visible {
+    .ft-links a:focus-visible {
       outline: 2px solid var(--teal);
       outline-offset: 3px;
       border-radius: 4px;
     }
 
-    .ft h4 {
-      margin: 0 0 30px;
+    /* ---- footer headings ---- */
+    .ft-title {
+      position: relative;
+      margin: 0 0 34px;
+      padding-bottom: 16px;
       font-size: 1.25rem;
       font-weight: 700;
       color: #fff;
     }
 
-    .ft-links,
-    .ft-hours {
+    .ft-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 46px;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #0b78b8, #14e0c0);
+    }
+
+    /* ---- quick links ---- */
+    .ft-links {
       margin: 0;
       padding: 0;
       list-style: none;
     }
 
-    .ft-links li,
-    .ft-hours li {
+    .ft-links li {
       margin-bottom: 17px;
       font-size: 1rem;
       line-height: 1.4;
@@ -1912,80 +1924,82 @@
       transform: translateX(4px);
     }
 
-    .ft-hours li {
-      color: rgba(255, 255, 255, .95);
-    }
-
-    .ft-map {
-      position: relative;
-      max-width: 310px;
-      aspect-ratio: 2 / 1;
-    }
-
-    .ft-map img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .ft-map svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .ft-map svg path {
-      fill: rgba(255, 255, 255, .14);
-      stroke: rgba(255, 255, 255, .14);
-      stroke-width: 7;
-      stroke-linejoin: round;
-    }
-
-    .ft-pin {
-      position: absolute;
-      transform: translate(-50%, -100%);
-      color: #fff;
-      font-size: 1.35rem;
-      line-height: 1;
-      filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .3));
-    }
-
-    .ft-pin.is-teal {
-      color: var(--teal);
-    }
-
-    .ft-contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px 42px;
-      margin: 38px 0 0;
-      padding: 36px 0 0;
-      border-top: 1px solid rgba(255, 255, 255, .14);
+    /* ---- contact cards ---- */
+    .ft-info {
+      display: grid;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
       list-style: none;
     }
 
-    .ft-contact li {
+    .ft-info-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    .ft-contact i {
-      color: var(--teal);
-      font-size: 1.3rem;
-      line-height: 1;
-    }
-
-    .ft-contact a,
-    .ft-contact span {
+      gap: 18px;
+      padding: 16px 20px;
       color: #fff;
-      font-size: 1rem;
       text-decoration: none;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 16px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition: transform .3s var(--ease), background .3s, border-color .3s, box-shadow .3s;
     }
 
-    .ft-contact a:hover {
+    .ft-info-item:hover {
+      color: #fff;
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, .12);
+      border-color: rgba(20, 200, 176, .55);
+      box-shadow: 0 16px 32px rgba(0, 18, 34, .3);
+    }
+
+    .ft-info-item:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+    }
+
+    .ft-info-icon {
+      flex: 0 0 auto;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--grad);
+      color: #fff;
+      font-size: 1.25rem;
+      box-shadow: 0 0 0 5px rgba(20, 200, 176, .18);
+      transition: transform .4s var(--ease);
+    }
+
+    .ft-info-item:hover .ft-info-icon {
+      transform: rotateY(180deg);
+    }
+
+    .ft-info-text {
+      min-width: 0;
+    }
+
+    .ft-info-text small {
+      display: block;
+      margin-bottom: 3px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
       color: var(--teal);
+    }
+
+    .ft-info-text strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.55;
+      color: #fff;
+      overflow-wrap: anywhere;
     }
 
     .ft-bottom {
@@ -2007,10 +2021,6 @@
       .ft {
         padding-top: 76px
       }
-
-      .ft-contact {
-        gap: 16px 30px
-      }
     }
 
     @media (max-width:991.98px) {
@@ -2024,10 +2034,6 @@
 
       .ft-about {
         max-width: 520px
-      }
-
-      .ft-map {
-        max-width: 340px
       }
 
       .ft-bottom {
@@ -2044,21 +2050,25 @@
         padding: 0 18px
       }
 
-      .ft h4 {
-        margin-bottom: 22px;
-        font-size: 1.15rem
+      .ft-title {
+        margin-bottom: 24px;
+        font-size: 1.15rem;
       }
 
-      .ft-contact {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 30px;
-        padding-top: 28px;
+      .ft-info-item {
+        gap: 14px;
+        padding: 14px 16px;
+        border-radius: 14px;
       }
 
-      .ft-contact a,
-      .ft-contact span {
-        font-size: .96rem
+      .ft-info-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+      }
+
+      .ft-info-text strong {
+        font-size: .95rem;
       }
 
       .ft-bottom {
@@ -2070,12 +2080,16 @@
     @media (prefers-reduced-motion: reduce) {
 
       .ft-social a,
-      .ft-links a {
+      .ft-links a,
+      .ft-info-item,
+      .ft-info-icon {
         transition: none
       }
 
       .ft-social a:hover,
-      .ft-links a:hover {
+      .ft-links a:hover,
+      .ft-info-item:hover,
+      .ft-info-item:hover .ft-info-icon {
         transform: none
       }
     }
@@ -2761,8 +2775,8 @@
 
             <!-- Drawer footer (mobile only) - edit with your real details -->
             <div class="drawer-extra">
-              <a href="tel:+910000000000"><i class="bi bi-telephone-fill"></i> +91 00000 00000</a>
-              <a href="mailto:info@genlab.com"><i class="bi bi-envelope-fill"></i> info@genlab.com</a>
+              <a href="tel:+919845104042"><i class="bi bi-telephone-fill"></i> +91 98451 04042</a>
+              <a href="mailto:coemedtechgok@gmail.com"><i class="bi bi-envelope-fill"></i> coemedtechgok@gmail.com</a>
             </div>
           </div>
         </div>
@@ -3157,47 +3171,55 @@
           </ul>
         </div>
 
-        <!-- Links + hours + branches + contact -->
-        <div class="col-lg-8">
-          <div class="row g-4 g-lg-5">
+        <!-- Quick Links -->
+        <div class="col-sm-5 col-lg-3" data-anim="up" data-delay="100">
+          <h4 class="ft-title">Quick Links</h4>
+          <ul class="ft-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Partners</a></li>
+            <li><a href="#">Tenders</a></li>
+            <li><a href="#">Programs &amp; Initiatives</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
 
-            <div class="col-sm-4 col-lg-3" data-anim="up" data-delay="100">
-              <h4>Quick Links</h4>
-              <ul class="ft-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Partners</a></li>
-                <li><a href="#">Tenders</a></li>
-                <li><a href="#">Programs &amp; Initiatives</a></li>
-                <li><a href="#">Contact Us</a></li>
-              </ul>
-            </div>
+        <!-- Get in Touch -->
+        <div class="col-sm-7 col-lg-5" data-anim="up" data-delay="200">
+          <h4 class="ft-title">Get in Touch</h4>
 
-            <div class="col-sm-8 col-lg-4" data-anim="up" data-delay="200">
-              <h4>Working Hours</h4>
-              <ul class="ft-hours">
-                <li>Mon - Fri: 09AM - 06PM</li>
-                <li>Saturday: 10AM - 02PM</li>
-                <li>Sunday : Closed</li>
-              </ul>
-            </div>
+          <ul class="ft-info">
+            <li>
+              <a class="ft-info-item" href="tel:+919845104042">
+                <span class="ft-info-icon"><i class="bi bi-telephone-fill" aria-hidden="true"></i></span>
+                <span class="ft-info-text">
+                  <small>Call Us</small>
+                  <strong>+91 98451 04042</strong>
+                </span>
+              </a>
+            </li>
 
-            <div class="col-lg-5" data-anim="up" data-delay="300">
-              <h4>Our Branches</h4>
-              <div class="ft-map" role="img" aria-label="World map showing our branch locations">
-                <img src="./images/footer-branch-image.png" alt="Map placeholder image">
-              </div>
-            </div>
+            <li>
+              <a class="ft-info-item" href="mailto:coemedtechgok@gmail.com">
+                <span class="ft-info-icon"><i class="bi bi-envelope-fill" aria-hidden="true"></i></span>
+                <span class="ft-info-text">
+                  <small>Email Us</small>
+                  <strong>coemedtechgok@gmail.com</strong>
+                </span>
+              </a>
+            </li>
 
-          </div>
-
-          <ul class="ft-contact" data-anim="up" data-delay="100">
-            <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+9845104042">9845104042</a></li>
-            <li><i class="bi bi-envelope" aria-hidden="true"></i><a
-                href="mailto:coemedtechgok@gmail.com">coemedtechgok@gmail.com</a></li>
-            <li><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Ground Floor, Karnataka Institute of
-                Endocrinology and Research, Near Swami Vivekananda Road Metro Station, Old Madras Road, Indiranagar,
-                Bengaluru - 560 038</span></li>
+            <li>
+              <a class="ft-info-item" target="_blank" rel="noopener"
+                href="https://www.google.com/maps/search/?api=1&query=Karnataka+Institute+of+Endocrinology+and+Research+Old+Madras+Road+Indiranagar+Bengaluru+560038">
+                <span class="ft-info-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></span>
+                <span class="ft-info-text">
+                  <small>Visit Us</small>
+                  <strong>Ground Floor, Karnataka Institute of Endocrinology and Research, Near Swami Vivekananda Road
+                    Metro Station, Old Madras Road, Indiranagar, Bengaluru - 560 038</strong>
+                </span>
+              </a>
+            </li>
           </ul>
         </div>
 
